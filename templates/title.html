@@ -1,0 +1,93 @@
+{% extends "template.html" %}
+
+{% block title %}
+  {{ book.title }} by {{ book.author }}
+{% endblock %}
+
+{% block body %}
+
+  <div class="row">
+    <div class="col">
+      <h6>Successfully Logged In</h6>
+    </div>
+    <div class="col">
+      <a href="{{ url_for('logout')}}">Log Out</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <h1><i>{{ book.title }}</i> by {{ book.author }}, ({{ book.year }})</h1>
+  </div>
+
+  <div class="row">
+    <h4>Book Reviews (Average Rating of {{ average }} Stars)</h4>
+  </div>
+
+  <div class="row">
+    <ul>
+      {% for result in results %}
+        <li>{{ result.rating }} Stars: {{ result.review }}</li>
+      {% else %}
+        <li>There are currently no reviews for this book. Submit one below!</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="input-group">
+    <form action="{{ url_for('book', isbn=book.isbn) }}" method="post">
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-4 pt-0">How Many Stars?</legend>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="5" checked>
+                <label class="form-check-label">
+                  5
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="4">
+                <label class="form-check-label">
+                  4
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="3">
+                <label class="form-check-label">
+                  3
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="2">
+                <label class="form-check-label">
+                  2
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="1">
+                <label class="form-check-label">
+                  1
+                </label>
+              </div>
+            </div>
+        </div>
+      </fieldset>
+      <div class="row">
+        <input type="text" name="review" class="col-sm-10 form-control" placeholder="What did you think?">
+        <div class="col-sm-2 input-group-btn">
+          <button class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>Goodreads Reviews (Average Rating of {{ goodreads_rating }} Stars)</h4>
+  </div>
+
+  <div class="row">
+    {{ goodreads_reviews["reviews_widget"] }}
+  </div>
+
+
+{% endblock %}
