@@ -51,15 +51,3 @@ Web Programming with Python and JavaScript
 
 /requirements.txt:
   The required installs for the application; only one added was "Requests"
-
-
-
-General Notes:
-  Obviously the biggest improvements would be in UX/UI. Added navigation throughout
-    the site would make navigation in actual use-cases much better. Also, styling is
-    minimal to none for the most part. My wife and I left on Feb. 22nd to move to
-    New Zealand from Texas, so I've had a little less time to flesh this project out
-    compared to what the rest of them will get!
-
-  Thanks so much,
-  Matthew Smith
